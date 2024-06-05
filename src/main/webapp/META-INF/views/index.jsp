@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="topbot.css">
 <script src="https://kit.fontawesome.com/fff8ef1317.js"
 	crossorigin="anonymous"></script>
-<%@ include file="top.jsp"%>
+<%@ include file="../../../top.jsp"%>
 <body>
 	<main>
 		<section class="main-image">
@@ -34,4 +34,4 @@
 	</main>
 </body>
 <!--<footer> 시작-->
-<%@ include file="bottom.jsp"%>
+<%@ include file="../../../bottom.jsp"%>
