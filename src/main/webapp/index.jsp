@@ -4,12 +4,10 @@
 <html>
 <head>
 <!--head 부분 코드는 이 줄 아래에 삽입-->
-<title>JEIU 캡스톤 프로젝트</title>
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="topbot.css">
-<script src="https://kit.fontawesome.com/fff8ef1317.js"
-	crossorigin="anonymous"></script>
-<%@ include file="../../../top.jsp"%>
+<link rel="stylesheet" href="./css/styles.css">
+<link rel="stylesheet" href="./css/topbot.css">
+<script src="https://kit.fontawesome.com/fff8ef1317.js"	crossorigin="anonymous"></script>
+<%@ include file="top.jsp"%>
 <body>
 	<main>
 		<section class="main-image">
@@ -34,4 +32,4 @@
 	</main>
 </body>
 <!--<footer> 시작-->
-<%@ include file="../../../bottom.jsp"%>
+<%@ include file="bottom.jsp"%>
