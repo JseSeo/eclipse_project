@@ -43,7 +43,7 @@ public class JoinController extends HttpServlet {
 	    if(insertCheck){
 	    	request.setAttribute("joinResult", insertCheck);
 			HttpSession session = request.getSession();
-			session.setAttribute("idKey", mDto);
+			session.setAttribute("idKey", id);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 			dispatcher.forward(request, response);
 

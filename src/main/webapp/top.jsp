@@ -12,7 +12,18 @@
             <li><a href="#">작품등록</a></li>
             <li><a href="#">작품보기</a></li>
             <li><a href="#">공지사항</a></li>
-            <li><a href="login.jsp">LOGIN</a></li>
+            <li>
+            <%String mem_id = (String)session.getAttribute("idKey");
+    	
+	    	String log="";
+	    	if(mem_id == null){
+	    		log ="<a href=login.jsp> LOGIN </a>";
+	    	}else {
+	    		log ="<a href=logout.do> LOGOUT </a>";
+	    	}
+	    	%>
+            <%=log %>
+            </li>
         </ul>
         <a href="#" id="search_icon"><i class="fa-solid fa-magnifying-glass"></i></a>
     </div>
