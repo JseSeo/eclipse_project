@@ -16,8 +16,8 @@ public class JdbcConnectUtil {
 	private int result;
 
 	public static Connection getConnection() {
-		String url = "jdbc:mysql://127.0.0.1:3306/backcapstone?serverTimezone=UTC&characterEncoding=utf-8&useSSL=false";
-		String id = "root", pw = "0948";
+		String url = "jdbc:mysql://127.0.0.1:3306/bwebdb?serverTimezone=UTC&characterEncoding=utf-8&useSSL=false";
+		String id = "root", pw = "6720";
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
