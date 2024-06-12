@@ -16,8 +16,8 @@ public class JdbcConnectUtil {
 	private int result;
 
 	public static Connection getConnection() {
-		String url = "jdbc:mysql://127.0.0.1:3306/bwebdb?serverTimezone=UTC&characterEncoding=utf-8&useSSL=false";
-		String id = "root", pw = "6720";
+		String url = "jdbc:mysql://sql.freedb.tech:3306/freedb_capstone?serverTimezone=UTC&characterEncoding=utf-8&useSSL=false";
+		String id = "freedb_admin1", pw = "#Gva!C6Kh$cMCgD";
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");

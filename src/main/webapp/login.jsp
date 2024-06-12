@@ -7,6 +7,7 @@
 <title>로그인</title>
 <link rel="stylesheet" href="./css/styles.css">
 <%@ include file="top.jsp"%>
+</head>
 <body>
 	<div class="login-container">
 		<h2>로그인</h2>
