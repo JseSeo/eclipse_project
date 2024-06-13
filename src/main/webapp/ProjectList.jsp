@@ -27,7 +27,7 @@
                     <p>프로젝트 설명: <%=project.getContent() %></p>
                     <p>팀 구성원: <%=project.getTeam() %></p>
                     <p>완성 날짜: <%=project.getDate() %></p>
-                    <p>사용 기술: HTML, CSS, JavaScript</p>
+                    <p>사용 기술: <%=project.getSource() %></p>
                 </div>
             </div>
             <%}%>

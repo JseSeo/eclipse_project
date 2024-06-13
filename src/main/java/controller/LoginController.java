@@ -19,8 +19,10 @@ public class LoginController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
 		String pw = request.getParameter("password");
+		
+		
 
-		MemberDao mDao = new MemberDao();		
+		MemberDao mDao = new MemberDao();
 		boolean loginCheck = mDao.loginCheck(id, pw);
 
 	    if(loginCheck){
