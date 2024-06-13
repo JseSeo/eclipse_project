@@ -39,9 +39,9 @@ import java.util.Vector;
 public class DBConnectionMgr {
     private Vector connections = new Vector(10);
     private String _driver = "com.mysql.cj.jdbc.Driver",
-    _url = "jdbc:mysql://sql.freedb.tech:3306/freedb_capstone?serverTimezone=UTC&characterEncoding=utf-8",
-    _user = "freedb_admin1",
-    _password = "#Gva!C6Kh$cMCgD";
+    _url = "jdbc:mysql://tibetfox.one:3306/capstone?serverTimezone=UTC&characterEncoding=utf-8",
+    _user = "root",
+    _password = "qwer";
     private boolean _traceOn = false;
     private boolean initialized = false;
     private int _openConnections = 10;
