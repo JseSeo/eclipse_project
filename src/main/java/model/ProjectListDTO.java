@@ -1,17 +1,17 @@
 package model;
 
 public class ProjectListDTO {
-	private String postid;
+	private int postid;
 	private String title;
 	private String team;
 	private String content;
 	private String date;
 	private String image;
 	private String file;
-	public String getPostid() {
+	public int getPostid() {
 		return postid;
 	}
-	public void setPostid(String postid) {
+	public void setPostid(int postid) {
 		this.postid = postid;
 	}
 	public String getTitle() {

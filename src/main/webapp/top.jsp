@@ -10,7 +10,7 @@
         <ul class="nav">
             <li><a href="index.jsp">HOME</a></li>
             <li><a href="#">작품등록</a></li>
-            <li><a href="#">작품보기</a></li>
+            <li><a href="ProjectList.jsp">작품보기</a></li>
             <li><a href="#">공지사항</a></li>
             <li>
             <%String mem_id = (String)session.getAttribute("idKey");
