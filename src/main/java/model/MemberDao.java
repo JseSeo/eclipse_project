@@ -1,19 +1,15 @@
 package model;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import common.JdbcConnectUtil;
 import common.DBConnectionMgr;
 
 public class MemberDao {
-	private static MemberDao mDao;
-	private Connection con;
-	private PreparedStatement pstmt;
-	private ResultSet rs;
-	private int result;
-	private DBConnectionMgr pool = null;
+    private DBConnectionMgr pool;
 
     public MemberDao() {
         try {
@@ -22,16 +18,15 @@ public class MemberDao {
             System.out.println("Error !!");
         }
     }
-	
 
-public boolean loginCheck(String id, String password) {    	
+    public boolean loginCheck(String id, String password) {    	
+        boolean loginCon = false;
+        Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        boolean loginCon = false;
-  
         try {   	
-        	con = pool.getConnection();
-            String strQuery = "select id, password from users where id = ? and password = ?";
+            con = pool.getConnection();
+            String strQuery = "SELECT id, password FROM users WHERE id = ? AND password = ?";
             pstmt = con.prepareStatement(strQuery);
             pstmt.setString(1, id);
             pstmt.setString(2, password);
@@ -39,21 +34,21 @@ public boolean loginCheck(String id, String password) {
             loginCon = rs.next();
             
             System.out.println("Login Check: " + loginCon + " for user ID: " + id);
-            
         } catch (Exception ex) {
             System.out.println("Exception" + ex);
         } finally {
-        	JdbcConnectUtil.close(con, pstmt, null);
+            JdbcConnectUtil.close(con, pstmt, rs);
         }
         return loginCon;
     }	
 	
     public boolean memberInsert(MemberDTO mDTO) {
-        PreparedStatement pstmt = null;
         boolean flag = false;
+        Connection con = null;
+        PreparedStatement pstmt = null;
         try {
-        	con = pool.getConnection();
-            String strQuery = "insert into users values(?,?,?,?)";
+            con = pool.getConnection();
+            String strQuery = "INSERT INTO users VALUES(?,?,?,?)";
             pstmt = con.prepareStatement(strQuery);
             pstmt.setString(1, mDTO.getId());
             pstmt.setString(2, mDTO.getPassword());
@@ -64,13 +59,35 @@ public boolean loginCheck(String id, String password) {
             if (count == 1) {
                 flag = true;
             }
-
         } catch (Exception ex) {
             System.out.println("Exception" + ex);
         } finally {
-        	JdbcConnectUtil.close(con, pstmt, null);
+            JdbcConnectUtil.close(con, pstmt, null);
         }
         return flag;
-    }		
-	
+    }
+    
+    public boolean adminCheck(String admin_id, String admin_passwd) {
+        boolean loginCon = false;
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            con = pool.getConnection();
+            String strQuery = "SELECT admin_id, admin_passwd FROM admin WHERE admin_id = ? AND admin_passwd = ?";
+            pstmt = con.prepareStatement(strQuery);
+            pstmt.setString(1, admin_id);
+            pstmt.setString(2, admin_passwd);
+            rs = pstmt.executeQuery();
+            loginCon = rs.next();
+        } catch (Exception ex) {
+            System.out.println("Exception" + ex);
+        } finally {
+            JdbcConnectUtil.close(con, pstmt, rs);
+        }
+        return loginCon;
+    }
+
+    
 }
+
