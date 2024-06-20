@@ -6,6 +6,7 @@
 <title>회원가입</title>
 <link rel="stylesheet" href="./css/styles.css">
 <%@ include file="top.jsp"%>
+<!-- </head> -->
 <body>
 	<div class="register-container">
 		<h2>회원가입</h2>

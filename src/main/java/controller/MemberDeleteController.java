@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 public class MemberDeleteController extends HttpServlet {
 
 
-	 void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	 }
 

@@ -1,4 +1,4 @@
-package controller;
+package controller.project;
 
 import java.io.IOException;
 import java.util.Enumeration;
@@ -15,17 +15,14 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import model.MemberDao;
 import model.ProjectListDTO;
 import model.ProjectListDao;
 
-@WebServlet("/uploadproject.do")
-public class UploadController extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
+@WebServlet("/updateproject.do")
+public class UpdateController extends HttpServlet {
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-	
 		int fileSize = 5*1024*1024;
 		String uploadPath = request.getServletContext().getRealPath("/file");
 		System.out.println("uploadpath는? "+uploadPath);
@@ -45,20 +42,12 @@ public class UploadController extends HttpServlet {
 				fileName = multi.getFilesystemName(name);
 			}
 			
-		
-		
-//			request.setCharacterEncoding("UTF-8");
-//			String title = request.getParameter("title");
-//			String team = request.getParameter("team");
-//			String source = request.getParameter("source");
-//			String content = request.getParameter("content");
-//			String file = request.getParameter("file");
-			
 			HttpSession session = request.getSession();
-			String name = (String) session.getAttribute("idKey");
+			String getid = multi.getParameter("postid");
+			int postid = Integer.parseInt(getid);
 			
 			ProjectListDTO pDto = new ProjectListDTO();
-			pDto.setName(name);
+			pDto.setPostid(postid);
 			pDto.setTitle(multi.getParameter("title"));
 			pDto.setTeam(multi.getParameter("team"));
 			pDto.setSource(multi.getParameter("source"));
@@ -66,20 +55,19 @@ public class UploadController extends HttpServlet {
 			pDto.setFile(fileName);
 			
 			ProjectListDao pDao = new ProjectListDao();	
-			boolean uploadCheck = pDao.insertProject(pDto);
-		
-		
-			if(uploadCheck) {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+			boolean updateCheck = pDao.updateProject(pDto);
+			
+			if(updateCheck) {
+				session.setAttribute("pro_chk", "okay");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("ProjectProc.jsp");
 				dispatcher.forward(request, response);
 			}
 			else {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("ProjectProc.jsp");
 				dispatcher.forward(request, response);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
 }

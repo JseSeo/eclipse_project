@@ -5,9 +5,9 @@
 <head>
 <!--head 부분 코드는 이 줄 아래에 삽입-->
 <link rel="stylesheet" href="./css/styles.css">
-<link rel="stylesheet" href="./css/topbot.css">
 <script src="https://kit.fontawesome.com/fff8ef1317.js"	crossorigin="anonymous"></script>
 <%@ include file="top.jsp"%>
+<!-- </head> -->
 <body>
 	<main>
 		<section class="main-image">

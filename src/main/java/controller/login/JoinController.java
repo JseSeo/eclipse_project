@@ -1,4 +1,4 @@
-package controller;
+package controller.login;
 
 import java.io.IOException;
 
@@ -16,6 +16,7 @@ import model.MemberDao;
 
 @WebServlet("/register.do")
 public class JoinController extends HttpServlet {
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
@@ -53,5 +54,7 @@ public class JoinController extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 	}
+	
+	
 
 }

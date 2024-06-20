@@ -6,11 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="./css/ProjectList.css">
-<link rel="stylesheet" href="./css/topbot.css">
-<script src="https://kit.fontawesome.com/fff8ef1317.js"	crossorigin="anonymous"></script>
-<%@ include file="top.jsp"%>
+<script language="JavaScript" src="script.js"></script>
 <title>작품 보기</title>
-</head>
+<%@ include file="top.jsp"%>
+<!-- </head> -->
 <body>
 <main>
 <%Vector vResult= proDao.getProjectList();%>
@@ -23,7 +22,9 @@
             <div class="project-info">
                 <img src="143315.png" alt="프로젝트 이미지">
                 <div class="project-details">
-                    <h2><%=project.getTitle() %></h2>
+                    <a href="javascript:projectDetail('<%=project.getPostid()%>')">
+                    <h2><%=project.getTitle()%></h2></a>
+                    
                     <p>프로젝트 설명: <%=project.getContent() %></p>
                     <p>팀 구성원: <%=project.getTeam() %></p>
                     <p>완성 날짜: <%=project.getDate() %></p>
@@ -35,4 +36,7 @@
     </main>
 
 </body>
+	<form name="detail" method="post" action="detail.jsp" >
+	<input type="hidden" name="no">
+	</form>
 <%@ include file="bottom.jsp"%>

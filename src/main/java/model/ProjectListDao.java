@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Optional;
 import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
@@ -56,37 +57,43 @@ public class ProjectListDao {
         return result;
     }
 	
-//	public ProjectListDTO getproject(String no) {
-//        Connection con = null;
-//        PreparedStatement pstmt = null;
-//        ResultSet rs = null;
-//        ProjectListDTO project = null;
-//
-//        try {
-//            con = pool.getConnection();
-//            String query = "select * from board where no=?";
-//            pstmt = con.prepareStatement(query);
-//            pstmt.setString(1, no);
-//            rs = pstmt.executeQuery();
-//
-//            if (rs.next()) {
-//                project = new ProjectListDTO();
-//                project.setPostid(rs.getInt("no"));
-//                project.setTitle(rs.getString("title"));
-//                project.setTeam(rs.getString("team"));
-//                project.setSource(rs.getString("source"));
-//                project.setContent(rs.getString("content"));
-//                project.setDate(rs.getString("date"));
-//                project.setFile(rs.getString("file"));
-//            }
-//        } catch (Exception ex) {
-//            System.out.println("Exception :" + ex);
-//        } finally {
-//            pool.freeConnection(con, pstmt, rs);
-//        }
-//        return project;
-//
-//	}
+	public ProjectListDTO getproject(String no) {
+		ProjectListDTO project = null;
+	    
+	    String query = "select * from capstone.board where postid=?";
+	    
+	    try (Connection con = pool.getConnection();
+	         PreparedStatement pstmt = con.prepareStatement(query)) {
+	         
+	        pstmt.setString(1, no);
+	        
+	        try (ResultSet rs = pstmt.executeQuery()) {
+	            if (rs.next()) {
+	                project = new ProjectListDTO();
+	                project.setPostid(rs.getInt("postid"));
+	                project.setName(rs.getString("name"));
+	                project.setTitle(rs.getString("title"));
+	                project.setTeam(rs.getString("team"));
+	                project.setSource(rs.getString("source"));
+	                project.setContent(rs.getString("content"));
+	                project.setDate(rs.getString("date"));
+	                project.setFile(Optional.ofNullable(rs.getString("file")).orElse("첨부 파일이 없습니다."));
+	                
+//	                if (rs.getString("file").equals(null)) {
+//	                	project.setFile(rs.getString("첨부 파일이 없습니다."));
+//	                } else {
+//	                	project.setFile(rs.getString("file"));
+//	                }
+	                System.out.println(rs.getString("file"));
+	            }
+	        }
+	    } catch (Exception ex) {
+	        ex.printStackTrace(); // 자세한 예외 정보를 출력
+	    }
+	    
+	    return project;
+
+	}
 	
 	public Vector getProjectList() throws SQLException {
         Connection con = null;
@@ -118,4 +125,54 @@ public class ProjectListDao {
         }
         return vProject;
     }
+	
+	public boolean updateProject(ProjectListDTO pDto) {
+		Connection con = null;
+        PreparedStatement pstmt = null;
+        boolean result = false;
+        try {
+     
+     
+            con = pool.getConnection();
+            String query = "update board set title=?, team=?, source=?, content=?, date=now(), file=? WHERE postid = ?";
+            pstmt = con.prepareStatement(query);
+            
+            pstmt.setString(1, pDto.getTitle());
+            pstmt.setString(2, pDto.getTeam());
+            pstmt.setString(3, pDto.getSource());
+            pstmt.setString(4, pDto.getContent());
+            pstmt.setString(5, pDto.getFile());
+            pstmt.setInt(6, pDto.getPostid());
+
+           
+            int count = pstmt.executeUpdate();
+            if (count == 1) result = true;
+
+        } catch (Exception ex) {
+            System.out.println("Exception :" + ex);
+        } finally {
+            pool.freeConnection(con, pstmt);
+        }
+        return result;
+    }
+	
+	public boolean deleteProject(String no) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        boolean result = false;
+
+        try {
+            con = pool.getConnection();
+            String query = "delete from board where postid = ?";
+            pstmt = con.prepareStatement(query);
+            pstmt.setString(1, no);
+            int count = pstmt.executeUpdate();
+            if (count == 1) result = true;
+        } catch (Exception ex) {
+            System.out.println("Exception :" + ex);
+        } finally {
+            pool.freeConnection(con, pstmt);
+        }
+        return result;
+	}
 }
