@@ -30,7 +30,7 @@ public class MemberDao {
         ResultSet rs = null;
         try {   	
             con = pool.getConnection();
-            String strQuery = "SELECT user_id, password FROM users WHERE id = ? AND password = ?";
+            String strQuery = "SELECT user_id, password FROM users WHERE user_id = ? AND password = ?";
             pstmt = con.prepareStatement(strQuery);
             pstmt.setString(1, id);
             pstmt.setString(2, password);
