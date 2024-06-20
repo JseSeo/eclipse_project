@@ -11,7 +11,7 @@
 <%@ include file="top.jsp"%>
 <!-- </head> -->
 <body>
-	<%ProjectListDTO project= Dao.getproject(request.getParameter("no"));
+	<%ProjectListDTO project= Dao.getproject(request.getParameter("id"));
 	System.out.println("작성자"+project.getName());
 	String log_user1 = (String)session.getAttribute("idKey");
 	System.out.println("로그인"+log_user1);%>
@@ -29,20 +29,13 @@
 				</div>
 				<div class="project-poster">
 					<h2>발표 자료</h2>
-					<img src="poster-image.jpg" alt="Poster" id="projectPoster">
+					
 					<%=project.getFile()%>
-				</div>
-				<div class="project-video">
-					<h2>발표 동영상</h2>
-					<video controls id="projectVideo">
-						<source src="video-file.mp4" type="video/mp4">
-						Your browser does not support the video tag.
-					</video>
 				</div>
 				<div class="project-youtube-video">
 					<h2>유튜브 동영상</h2>
 					<iframe width="560" height="315"
-						src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+						src="https://www.youtube.com/embed/<%=project.getYturl()%>"
 						title="YouTube video player" frameborder="0"
 						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 						allowfullscreen></iframe>

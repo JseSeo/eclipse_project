@@ -54,6 +54,7 @@ public class UploadController extends HttpServlet {
 			pDto.setTeam(multi.getParameter("team"));
 			pDto.setSource(multi.getParameter("source"));
 			pDto.setContent(multi.getParameter("content"));
+			pDto.setYturl(multi.getParameter("yturl"));
 			pDto.setFile(fileName);
 			
 			ProjectListDao pDao = new ProjectListDao();	

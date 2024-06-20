@@ -9,6 +9,7 @@ public class ProjectListDTO {
 	private String content;
 	private String date;
 	private String file;
+	private String yturl;
 	
 	public int getPostid() {
 		return postid;
@@ -58,5 +59,12 @@ public class ProjectListDTO {
 	public void setFile(String file) {
 		this.file = file;
 	}
+	public String getYturl() {
+		return yturl;
+	}
+	public void setYturl(String yturl) {
+		this.yturl = yturl;
+	}
+	
 
 }

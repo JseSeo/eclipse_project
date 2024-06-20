@@ -32,6 +32,11 @@
                     <textarea id="content" name="content" rows="4" required><%=project.getContent()%></textarea>
                 </div>
                 <div class="form-group">
+                    <label for="yturl">유튜브 영상 주소</label>
+                    <p>https://youtu.be/[?] 혹은 https://www.youtube.com/watch?v=[?]</p>
+                    <input type="text" id="yturl" name="yturl" value="<%=project.getYturl()%>">
+                </div>
+                <div class="form-group">
                     <label for="poster">발표 자료 (포스터)</label>
                     <input type="file" id="file" name="file">
                 </div>

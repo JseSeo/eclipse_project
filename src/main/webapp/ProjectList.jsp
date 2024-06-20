@@ -22,7 +22,7 @@
             <div class="project-info">
                 <img src="143315.png" alt="프로젝트 이미지">
                 <div class="project-details">
-                    <a href="javascript:projectDetail('<%=project.getPostid()%>')">
+                    <a href="detail.jsp?id=<%=project.getPostid()%>">
                     <h2><%=project.getTitle()%></h2></a>
                     
                     <p>프로젝트 설명: <%=project.getContent() %></p>
