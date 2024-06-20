@@ -35,15 +35,16 @@ public class ProjectListDao {
      
      
             con = pool.getConnection();
-            String query = "insert into board(name, title, team, source, content, date, file)"
-                    + "values(?, ?, ?, ?, ?, now(), ?)";
+            String query = "insert into board(name, title, team, source, content, yturl, date, file)"
+                    + "values(?, ?, ?, ?, ?, ?, now(), ?)";
             pstmt = con.prepareStatement(query);
             pstmt.setString(1, pDto.getName());
             pstmt.setString(2, pDto.getTitle());
             pstmt.setString(3, pDto.getTeam());
             pstmt.setString(4, pDto.getSource());
             pstmt.setString(5, pDto.getContent());
-            pstmt.setString(6, pDto.getFile());
+            pstmt.setString(6, pDto.getYturl());
+            pstmt.setString(7, pDto.getFile());
 
            
             int count = pstmt.executeUpdate();
@@ -76,6 +77,7 @@ public class ProjectListDao {
 	                project.setTeam(rs.getString("team"));
 	                project.setSource(rs.getString("source"));
 	                project.setContent(rs.getString("content"));
+	                project.setYturl(rs.getString("yturl"));
 	                project.setDate(rs.getString("date"));
 	                project.setFile(Optional.ofNullable(rs.getString("file")).orElse("첨부 파일이 없습니다."));
 	                
@@ -114,6 +116,7 @@ public class ProjectListDao {
                 project.setTeam(rs.getString("team"));
                 project.setSource(rs.getString("source"));
                 project.setContent(rs.getString("content"));
+                project.setDate(rs.getString("yturl"));
                 project.setDate(rs.getString("date"));
                 project.setFile(rs.getString("file"));
                 vProject.add(project);
@@ -134,15 +137,16 @@ public class ProjectListDao {
      
      
             con = pool.getConnection();
-            String query = "update board set title=?, team=?, source=?, content=?, date=now(), file=? WHERE postid = ?";
+            String query = "update board set title=?, team=?, source=?, content=?, yturl=?, date=now(), file=? WHERE postid = ?";
             pstmt = con.prepareStatement(query);
             
             pstmt.setString(1, pDto.getTitle());
             pstmt.setString(2, pDto.getTeam());
             pstmt.setString(3, pDto.getSource());
             pstmt.setString(4, pDto.getContent());
-            pstmt.setString(5, pDto.getFile());
-            pstmt.setInt(6, pDto.getPostid());
+            pstmt.setString(5, pDto.getYturl());
+            pstmt.setString(6, pDto.getFile());
+            pstmt.setInt(7, pDto.getPostid());
 
            
             int count = pstmt.executeUpdate();
