@@ -22,7 +22,7 @@ footer {
 
 /* 상단 부분 */
 header {
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     right: 0;
@@ -80,7 +80,7 @@ header {
 
 /* 하단 부분 */
 footer {
-    position: fixed;
+    position: relative;
     bottom: 0;
     left: 0;
     right: 0;

@@ -29,7 +29,7 @@
 				</div>
 				<div class="project-poster">
 					<h2>발표 자료</h2>
-					<img src="poster-image.jpg" alt="Poster" id="projectPoster">
+					<img src="" alt="Poster" id="projectPoster">
 					<%=project.getFile()%>
 				</div>
 				<div class="project-video">
