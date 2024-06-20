@@ -2,6 +2,7 @@
 <%@ page import="java.util.*, model.*"%>
 <jsp:useBean id="Dao" class="model.ProjectListDao" />
 <jsp:useBean id="likeDao" class="model.LikeDao" />
+<jsp:useBean id="commentDao" class="model.CommentDao" />
 <html>
 <head>
 <meta charset="UTF-8">
@@ -40,7 +41,7 @@
                         allowfullscreen></iframe>
                 </div>
                 <div class="project-actions">
-                    <form action="like" method="post" style="display:inline;">
+                    <form action="${pageContext.request.contextPath}/like" method="post" style="display:inline;">
                         <input type="hidden" name="projectId" value="<%= project.getPostid() %>">
                         <button type="submit" class="like-button" style="background: none; border: none; cursor: pointer;">
                             <%
@@ -53,7 +54,7 @@
                     </form>
                     <span>
                         <i class="fas fa-comment"></i>
-                        <span id="commentNum">0</span>개
+                        <span id="commentNum"><%= commentDao.getComments(project.getPostid()).size() %></span>개
                     </span>
                     <% 
                         String log_user = (String) session.getAttribute("idKey");
@@ -69,11 +70,21 @@
                 </div>
                 <div class="comments-section">
                     <h2>댓글</h2>
-                    <textarea id="commentInput" placeholder="댓글을 입력하세요"></textarea>
-                    <button id="submitComment">댓글 달기</button>
-
+                    <form action="${pageContext.request.contextPath}/comment" method="post">
+                        <input type="hidden" name="projectId" value="<%= project.getPostid() %>">
+                        <textarea name="content" id="commentInput" placeholder="댓글을 입력하세요"></textarea>
+                        <button type="submit">댓글 달기</button>
+                    </form>
                     <div id="commentsList">
-                        <!-- 댓글 리스트가 여기 표시됩니다. -->
+                        <%
+                            List<CommentDTO> comments = commentDao.getComments(project.getPostid());
+                            for (CommentDTO comment : comments) {
+                        %>
+                        <div class="comment">
+                            <p><strong><%= comment.getUserId() %></strong>: <%= comment.getContent() %></p>
+                            <p><small><%= comment.getCreatedAt() %></small></p>
+                        </div>
+                        <% } %>
                     </div>
                 </div>
             </div>
