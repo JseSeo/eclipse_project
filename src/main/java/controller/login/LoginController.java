@@ -14,6 +14,7 @@ import model.MemberDao;
 
 @WebServlet("/login.do")
 public class LoginController extends HttpServlet {
+		
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
