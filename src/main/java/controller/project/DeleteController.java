@@ -17,17 +17,20 @@ public class DeleteController extends HttpServlet {
 
 
 	 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 String postid = request.getParameter("id");
+		String postid = request.getParameter("id");
+		HttpSession session = request.getSession();
+		String name = (String) session.getAttribute("idKey");
+		if (name == null) {
+			name = "admin";
+		}
 		try {	 
-		 	ProjectListDao pDao = new ProjectListDao();	
-			 boolean uploadCheck = pDao.deleteProject(postid);
-			 HttpSession session = request.getSession();
-		 if(uploadCheck) {
+		 	ProjectListDao pDao = new ProjectListDao();
+			 boolean deleteCheck = pDao.deleteProject(postid, name);
+			 if(deleteCheck) {
 				session.setAttribute("pro_chk", "okay");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("ProjectProc.jsp");
 				dispatcher.forward(request, response);
-			}
-			else {
+			 } else {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("ProjectProc.jsp");
 				dispatcher.forward(request, response);
 			}

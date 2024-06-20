@@ -112,6 +112,7 @@ public class ProjectListDao {
             while (rs.next()) {
             	ProjectListDTO project = new ProjectListDTO();
             	project.setPostid(rs.getInt("postid"));
+            	project.setName(rs.getString("name"));
                 project.setTitle(rs.getString("title"));
                 project.setTeam(rs.getString("team"));
                 project.setSource(rs.getString("source"));
@@ -160,23 +161,33 @@ public class ProjectListDao {
         return result;
     }
 	
-	public boolean deleteProject(String no) {
+	public boolean deleteProject(String no, String name) throws Exception {
         Connection con = null;
         PreparedStatement pstmt = null;
         boolean result = false;
-
+        
         try {
-            con = pool.getConnection();
-            String query = "delete from board where postid = ?";
+        	con = pool.getConnection();
+            String query = "select * from capstone.board where postid=?";
             pstmt = con.prepareStatement(query);
             pstmt.setString(1, no);
-            int count = pstmt.executeUpdate();
-            if (count == 1) result = true;
+            ResultSet rs = pstmt.executeQuery();
+            rs.next();
+            if(rs.getString("name").equals(name) || "admin".equals(name) ) {
+            	query = "delete from board where postid = ?";
+            	pstmt = con.prepareStatement(query);
+                pstmt.setString(1, no);
+                int count = pstmt.executeUpdate();
+                if (count == 1) result = true;
+            }
         } catch (Exception ex) {
             System.out.println("Exception :" + ex);
         } finally {
             pool.freeConnection(con, pstmt);
         }
+        
+        
+        
         return result;
 	}
 }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+    <script>
+        $(document).ready(function () {
+            let output = "";
+            for (let i = 0; i < 256; i++) {
+                output += '<div></div>';
+            }
+            document.body.innerHTML = output;
+            $('div').css({
+                height: 3,
+                backgroundColor: function (i) {
+                    return 'rgb(' + 0 + ',' + 128
+                        + ',' + 0 + ',' + i / 256 + ')';
+                }
+            })
+
+
+        });
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

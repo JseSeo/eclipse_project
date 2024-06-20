@@ -1,0 +1,19 @@
+<script>
+    for (let x = 9; x >= 2; x--) {
+        // 자주 바뀌는 것을 안쪽으로 반복을 수행합니다.
+        for (let y = 1; y <= 9; y++) {
+            var form_x = ("" + x.toString()).slice(-2);
+            var form_y = ("" + y.toString()).slice(-2);
+            var form_xy = ("00" + (x * y).toString()).slice(-2);
+            document.write(`${form_x} * ${form_y} = ${form_xy} &nbsp;&nbsp;`);
+            // 줄을 바꿉니다.
+
+            if (y % 3 == 0 && y != 2) {
+                document.write('<br>');
+            }
+        }
+        // 한줄을 띄웁니다.
+        document.write('<br>');
+    }
+
+</script>
