@@ -15,14 +15,14 @@
 		response.sendRedirect("dashBoard.jsp");
 	}%>
 <body>
-    <h2>Admin Login</h2>
+    <h2>관리자 로그인</h2>
     <form action="${pageContext.request.contextPath}/login.do" method="post">
-        <label for="username">Username:</label>
+        <label for="username">아이디:</label>
         <input type="text" id="id" name="id" required><br><br>
-        <label for="password">Password:</label>
+        <label for="password">비밀번호:</label>
         <input type="password" id="password" name="password" required><br><br>
         <input type="hidden" id="role" name="role" value="admin">
-        <button type="submit">Login</button>
+        <button type="submit">로그인</button>
     </form>
 </body>
 </html>
