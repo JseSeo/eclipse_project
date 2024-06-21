@@ -20,11 +20,7 @@
 			<label for="name">이름:</label>
 			<input type="text" id="name" name="name" required>
 			
-			<label for="role">권한:</label>
-			<select id="role" name="role" required>
-				<option value="user">일반회원</option>
-				<option value="admin">관리자</option>
-			</select>
+			
 			<input type="submit" value="회원가입">
 		</form>
 		<%

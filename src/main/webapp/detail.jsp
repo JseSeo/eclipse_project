@@ -49,12 +49,12 @@
                                 int likeCount = likeDao.getLikeCount(project.getPostid());
                             %>
                             <i id="likeIcon" class="<%= isLiked ? "fas" : "far" %> fa-heart"></i>
-                            <span id="likeNum"><%= likeCount %></span>개
+                            <span id="likeNum"><%= likeCount %>개</span>
                         </button>
                     </form>
                     <span>
                         <i class="fas fa-comment"></i>
-                        <span id="commentNum"><%= commentDao.getComments(project.getPostid()).size() %></span>개
+                        <span id="commentNum"><%= commentDao.getComments(project.getPostid()).size() %>개</span>
                     </span>
                     <% 
                         String log_user = (String) session.getAttribute("idKey");

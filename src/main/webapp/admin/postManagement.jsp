@@ -33,7 +33,7 @@
                 <td><%=project.getName()%></td>
                 <td>
                     <button class="edit-btn" onclick="window.open('${pageContext.request.contextPath}/detail.jsp?id=<%=project.getPostid()%>')">글 확인</button>
-                    <button class="delete-btn" onclick="location.href='${pageContext.request.contextPath}/deleteproject.do?id=<%=project.getPostid()%>'">삭제</button>
+                    <button class="delete-btn" onclick="window.open('${pageContext.request.contextPath}/deleteproject.do?id=<%=project.getPostid()%>')">삭제</button>
                 </td>
             </tr>
             <%} %>

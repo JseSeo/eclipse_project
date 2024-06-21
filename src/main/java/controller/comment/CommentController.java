@@ -13,6 +13,7 @@ import java.io.IOException;
 @WebServlet("/comment")
 public class CommentController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	request.setCharacterEncoding("UTF-8");
         String userId = (String) request.getSession().getAttribute("idKey");
         int projectId = Integer.parseInt(request.getParameter("projectId"));
         String content = request.getParameter("content");
